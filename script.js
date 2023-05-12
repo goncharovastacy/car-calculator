@@ -124,7 +124,5 @@ const button = document.getElementById('button');
 button.addEventListener('click', function() {
     if(document.getElementById('capacity').value === "") {
       alert('Введите объем двигателя');
-    } else {
-        //
-    }
+    } else { calculatePrice (); }
   });
