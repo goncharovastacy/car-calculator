@@ -56,8 +56,6 @@ function chooseCondition(){
 }
 secondCondition.addEventListener('change', chooseCondition);
 
-
-
 //рассчет полной стоимости
 function calculatePrice (evt) {
     evt.preventDefault();
@@ -97,12 +95,36 @@ function calculatePrice (evt) {
         totalPrice = totalPrice + 7000;
     }
 
+    // делаем скидку в зависимости от того, сколько было владельцев
+    if (secondCondition.checked) {
+        const exOwner = document.querySelectorAll('input[name="ex-owner"]');
+        for (let i = 0; i < exOwner.length; i++){
+            if (exOwner[i].checked === true){
+                totalPrice = totalPrice - (totalPrice * +exOwner[i].value);
+            }
+        }
+    }
+
+    // скидка на оплату
+    const payment = document.querySelectorAll('input[name="payment"]');
+    for (let i = 0; i < payment.length; i++){
+        if (payment[i].checked === true) {
+            totalPrice = totalPrice - (totalPrice * +payment[i].value);
+        }
+    }
+
     const priceText = document.getElementById('total-price');
     priceText.innerHTML = `<p>Расчетная цена: ${totalPrice}</p>`;
     form.reset();
 }
 
-
-    
 const button = document.getElementById('button');
-button.addEventListener('click', calculatePrice);
+// button.addEventListener('click', calculatePrice);
+
+button.addEventListener('click', function() {
+    if(document.getElementById('capacity').value === "") {
+      alert('Введите объем двигателя');
+    } else {
+        //
+    }
+  });

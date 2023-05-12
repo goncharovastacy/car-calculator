@@ -21,7 +21,6 @@
             </select>
           </label>
         </fieldset>
-
         <fieldset>
           <label
             >Модель:
@@ -70,7 +69,6 @@
             </select>
           </label>
         </fieldset>
-
         <fieldset>
           <label
             >Тип топлива:
@@ -107,12 +105,10 @@
             ></label
           >
         </fieldset>
-
         <fieldset>
           <label
             >Объем двигателя (л.):
-            <input type="number" min="1.1" max="3.5" step="0.1" id="capacity" required
-          /></label>
+            <input type="number" min="1.1" max="3.5" step="0.1" id="capacity"/></label>
         </fieldset>
         <fieldset>
           <label
@@ -129,7 +125,6 @@
             ></label
           >
         </fieldset>
-
         <fieldset id="conditions">
           <label
             >Количество владельцев:
@@ -147,17 +142,14 @@
               ><input type="radio" name="ex-owner" id="" value="0.2" />3 и
               более</label>
         </fieldset>
-
         <fieldset>
           <label
             >Способ оплаты:
-            <label><input type="radio" name="" id="" checked />Карта</label>
-            <label><input type="radio" name="" id="" />Наличные</label>
+            <label><input type="radio" name="payment" value="0.02" checked />Карта</label>
+            <label><input type="radio" name="payment" value="0"/>Наличные</label>
             <label
-              ><input type="radio" name="" id="" />Счет на юридическое
-              лицо</label
-            ></label
-          >
+              ><input type="radio" name="payment" value="0.02"/>Счет на юридическое лицо</label></label>
+              <p class="discount">*При оплате картой или на счет скидка на покупку 2%</p>
         </fieldset>
         <button id="button">Рассчитать стоимость</button>
       </form>
