@@ -75,12 +75,35 @@
           <label
             >Тип топлива:
             <label
-              ><input type="radio" name="fuel" id="" checked />Бензин</label
+              ><input
+                type="radio"
+                name="fuel"
+                class="fuel"
+                id=""
+                value="20000"
+                checked
+              />Бензин</label
             >
-            <label><input type="radio" name="fuel" id="" />Дизель</label>
-            <label><input type="radio" name="fuel" id="" />Газ</label>
             <label
-              ><input type="radio" name="fuel" id="" />Электричество</label
+              ><input
+                type="radio"
+                name="fuel"
+                class="fuel"
+                id=""
+                value="30000"
+              />Дизель</label
+            >
+            <label
+              ><input type="radio" name="fuel" id="" value="40000" />Газ</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="fuel"
+                class="fuel"
+                id=""
+                value="50000"
+              />Электричество</label
             ></label
           >
         </fieldset>
@@ -88,7 +111,7 @@
         <fieldset>
           <label
             >Объем двигателя (л.):
-            <input type="number" min="1.1" max="3.5" step="0.1" required
+            <input type="number" min="1.1" max="3.5" step="0.1" id="capacity" required
           /></label>
         </fieldset>
         <fieldset>
@@ -99,6 +122,7 @@
                 type="radio"
                 name="condition"
                 id="condition1"
+                checked
               />Новый</label
             ><label
               ><input type="radio" name="condition" id="condition2" />Б/У</label
@@ -109,10 +133,19 @@
         <fieldset id="conditions">
           <label
             >Количество владельцев:
-            <label><input type="radio" name="ex-owner" id="" checked />1</label>
-            <label><input type="radio" name="ex-owner" id="" />2</label>
-            <label><input type="radio" name="ex-owner" id="" />3 и более</label>
-          </label>
+            <label
+              ><input
+                type="radio"
+                name="ex-owner"
+                id=""
+                value="0.05"
+                checked
+              />1</label>
+            <label
+              ><input type="radio" name="ex-owner" id="" value="0.1" />2</label>
+            <label
+              ><input type="radio" name="ex-owner" id="" value="0.2" />3 и
+              более</label>
         </fieldset>
 
         <fieldset>

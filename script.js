@@ -74,12 +74,35 @@ function calculatePrice (evt) {
     else if (brand.value === 'Jaguar') {
         model = jaguarModel;
     }
-    let modelPrice = model.value;
+    const modelPrice = model.value;
+    
+    let totalPrice = +modelPrice;
+    //прибавляем тип топлива
+    const fuelType = document.querySelectorAll('.fuel');
+    for (let i = 0; i < fuelType.length; i++) {
+        if (fuelType[i].checked === true) {
+            totalPrice = totalPrice + +fuelType[i].value;
+        }
+    }
 
-    const totalPrice = document.getElementById('total-price');
-    totalPrice.innerHTML = `<p>Расчетная цена: ${modelPrice}</p>`;
+    //прибавляем объем двигателя
+    const capacity = document.getElementById('capacity').value;
+    if (+capacity <= 2){
+        totalPrice = totalPrice + 3000;
+    }
+    else if (+capacity <= 3){
+        totalPrice = totalPrice + 5000;
+    }
+    else {
+        totalPrice = totalPrice + 7000;
+    }
+
+    const priceText = document.getElementById('total-price');
+    priceText.innerHTML = `<p>Расчетная цена: ${totalPrice}</p>`;
     form.reset();
 }
 
+
+    
 const button = document.getElementById('button');
 button.addEventListener('click', calculatePrice);
