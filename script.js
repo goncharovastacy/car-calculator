@@ -1,79 +1,94 @@
+'use strict';
+
+// переменные
 const brand = document.querySelector('#brand');
+const carModel = document.querySelector('#model');
+const button = document.getElementById('button');
 
-//показ марки и моделей по умолчанию
-document.getElementById('Renault').selected = true; 
-const renaultModel = document.getElementById('Renault-model');
-const opelModel = document.getElementById('Opel-model');
-const mazdaModel = document.getElementById('Mazda-model');
-const jaguarModel = document.getElementById('Jaguar-model');
-renaultModel.style.display = '';
-opelModel.style.display = 'none'; 
-mazdaModel.style.display = 'none'; 
-jaguarModel.style.display = 'none';
-document.getElementById('Arkana').selected = true; 
-document.getElementById('Antara').selected = true; 
-document.getElementById('Axela').selected = true; 
-document.getElementById('F-Pace').selected = true; 
+// показ по умолчанию
+document.querySelector('.car-model').style.display = 'none';
+document.getElementById('none').selected = true;
 
-let model;
+// объекты с моделями
+const renaultModel = {
+    Arkana: 1100000,
+    Duster: 1200000,
+    Fluence: 1300000,
+    Grand: 1400000,
+    Kaptur: 1500000
+}
+const opelModel = {
+    Antara: 1110000,
+    Astra: 1210000,
+    Astra: 1310000,
+    Astra: 1410000,
+    Corsa: 1510000
+}
 
-function chooseBrand (){
-    if (brand.value === 'Renault'){
-        renaultModel.style.display = '';
-        opelModel.style.display = 'none'; 
-        mazdaModel.style.display = 'none'; 
-        jaguarModel.style.display = 'none'; 
+const mazdaModel = {
+    Axela: 700000,
+    Biante: 800000,
+    Mazda3: 900000,
+    Mazda6: 600000,
+    Demio: 500000
+}
+
+const jaguarModel = {
+    XF: 30200000,
+    XJ: 3500000
+}
+
+// функция выбора бренда
+function chooseBrand () {
+    if (brand.value === 'none'){
+        document.querySelector('.car-model').style.display = 'none';
+    }
+    else if (brand.value === 'Renault'){
+        chooseModelList(renaultModel, carModel);
     }
     else if (brand.value === 'Opel'){
-        renaultModel.style.display = 'none'; 
-        opelModel.style.display = '';
-        mazdaModel.style.display = 'none'; 
-        jaguarModel.style.display = 'none'; 
+        chooseModelList(opelModel, carModel);
     }
     else if (brand.value === 'Mazda') {
-        opelModel.style.display = 'none'; 
-        renaultModel.style.display = 'none'; 
-        mazdaModel.style.display = '';
-        jaguarModel.style.display = 'none'; 
+        chooseModelList(mazdaModel, carModel);
     }
     else if (brand.value === 'Jaguar') {
-        renaultModel.style.display = 'none'; 
-        opelModel.style.display = 'none'; 
-        mazdaModel.style.display = 'none'; 
-        jaguarModel.style.display = '';
+        chooseModelList(jaguarModel, carModel);
     }
 }
+
 brand.addEventListener('change', chooseBrand);
+
+// функция добавления списка моделей
+function chooseModelList (obj, element){
+    document.querySelector('.car-model').style.display = '';
+    element.innerHTML = '';
+    for (let key in obj) {
+    const option = document.createElement('option');
+    option.value = obj[key];
+    option.innerText = key;
+    element.appendChild(option);
+}}
 
 //показ состояния машины по умолчанию
 document.getElementById('conditions').style.display = 'none';
 const firstCondition = document.getElementById('condition1');
 firstCondition.checked = true;
+
 //выбор состояния машины
 const secondCondition = document.getElementById('condition2');
 function chooseCondition(){
-    if (secondCondition.checked) {document.getElementById('conditions').style.display = ''};
+    if (secondCondition.checked) {document.getElementById('conditions').style.display = ''}
+    else {document.getElementById('conditions').style.display = 'none'};
 }
+firstCondition.addEventListener('change', chooseCondition);
 secondCondition.addEventListener('change', chooseCondition);
 
 //рассчет полной стоимости
-function calculatePrice (evt) {
-    evt.preventDefault();
-    //список моделей
-    if (brand.value === 'Renault'){
-        model = renaultModel;
-    }
-    else if (brand.value === 'Opel'){
-        model = opelModel;
-    }
-    else if (brand.value === 'Mazda') {
-        model = mazdaModel;
-    }
-    else if (brand.value === 'Jaguar') {
-        model = jaguarModel;
-    }
-    const modelPrice = model.value;
-    
+function calculatePrice () {
+   
+    const modelPrice = carModel.value;
+
     let totalPrice = +modelPrice;
     //прибавляем тип топлива
     const fuelType = document.querySelectorAll('.fuel');
@@ -115,14 +130,15 @@ function calculatePrice (evt) {
 
     const priceText = document.getElementById('total-price');
     priceText.innerHTML = `<p>Расчетная цена: ${totalPrice}</p>`;
+    document.querySelector('.car-model').style.display = 'none';
     form.reset();
 }
 
-const button = document.getElementById('button');
-// button.addEventListener('click', calculatePrice);
-
-button.addEventListener('click', function() {
-    if(document.getElementById('capacity').value === "") {
-      alert('Введите объем двигателя');
-    } else { calculatePrice (); }
+// если поле с объемом двигателя пустое, то функция не сработает
+button.addEventListener('click', function(evt) {
+    evt.preventDefault();
+    if(document.getElementById('capacity').value === "" || brand.value === 'none') {
+      alert('Выберите все значения');
+    } 
+    else { calculatePrice (); }
   });

@@ -9,64 +9,23 @@
   </head>
   <body>
     <div class="container">
-      <form action="" name="form">
+      <form name="form">
         <fieldset>
           <label
             >Марка автомобиля:
             <select name="brand" id="brand">
-              <option value="Renault" id="Renault">Renault</option>
+              <option value="none" id="none">Выберите марку</option>
+              <option value="Renault">Renault</option>
               <option value="Opel">Opel</option>
               <option value="Mazda">Mazda</option>
               <option value="Jaguar">Jaguar</option>
             </select>
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset class="car-model">
           <label
             >Модель:
-            <select name="model" id="Renault-model">
-              <option value="1100000" id="Arkana">Arkana</option>
-              <option value="1200000">Duster</option>
-              <option value="1300000">Fluence</option>
-              <option value="1400000">Grand Scenic</option>
-              <option value="1500000">Kaptur</option>
-              <option value="1600000">Koleos</option>
-              <option value="1700000">Laguna</option>
-              <option value="1800000">Latitude</option>
-              <option value="1900000">Sandero Stepway</option>
-              <option value="2000000">Trafic</option>
-            </select>
-            <select name="model" id="Opel-model">
-              <option value="1110000" id="Antara">Antara</option>
-              <option value="1210000">Astra</option>
-              <option value="1310000">Astra Family</option>
-              <option value="1410000">Astra GTC</option>
-              <option value="1510000">Corsa</option>
-              <option value="1610000">Insignia</option>
-              <option value="1710000">Meriva</option>
-              <option value="1810000">Mokka</option>
-              <option value="1910000">Vivaro</option>
-              <option value="2110000">Zafira</option>
-            </select>
-            <select name="model" id="Mazda-model">
-              <option value="700000" id="Axela">Axela</option>
-              <option value="800000">Biante</option>
-              <option value="900000">CX-3</option>
-              <option value="600000">CX-5</option>
-              <option value="500000">CX-9</option>
-              <option value="750000">Mazda3</option>
-              <option value="770000">Mazda6</option>
-              <option value="780000">Mazda6 MPS</option>
-              <option value="790000">RX-7</option>
-              <option value="890000">RX-8</option>
-            </select>
-            <select name="model" id="Jaguar-model">
-              <option value="3000000" id="F-Pace">F-Pace</option>
-              <option value="3100000">S-type</option>
-              <option value="30200000">XF</option>
-              <option value="3500000">XJ</option>
-              <option value="3600000">X-Type</option>
-            </select>
+            <select name="model" id="model"></select>
           </label>
         </fieldset>
         <fieldset>
@@ -87,19 +46,15 @@
                 type="radio"
                 name="fuel"
                 class="fuel"
-                id=""
                 value="30000"
               />Дизель</label
             >
-            <label
-              ><input type="radio" name="fuel" id="" value="40000" />Газ</label
-            >
+            <label><input type="radio" name="fuel" value="40000" />Газ</label>
             <label
               ><input
                 type="radio"
                 name="fuel"
                 class="fuel"
-                id=""
                 value="50000"
               />Электричество</label
             ></label
@@ -108,7 +63,8 @@
         <fieldset>
           <label
             >Объем двигателя (л.):
-            <input type="number" min="1.1" max="3.5" step="0.1" id="capacity"/></label>
+            <input type="number" min="1.1" max="3.5" step="0.1" id="capacity"
+          /></label>
         </fieldset>
         <fieldset>
           <label
@@ -120,36 +76,54 @@
                 id="condition1"
                 checked
               />Новый</label
-            ><label
+            >
+            <label
               ><input type="radio" name="condition" id="condition2" />Б/У</label
             ></label
           >
         </fieldset>
         <fieldset id="conditions">
           <label
-            >Количество владельцев:
-            <label
+            >Количество владельцев:<label
               ><input
                 type="radio"
                 name="ex-owner"
                 id=""
                 value="0.05"
                 checked
-              />1</label>
+              />1</label
+            >
             <label
-              ><input type="radio" name="ex-owner" id="" value="0.1" />2</label>
+              ><input type="radio" name="ex-owner" id="" value="0.1" />2</label
+            >
             <label
               ><input type="radio" name="ex-owner" id="" value="0.2" />3 и
-              более</label>
+              более</label
+            ></label
+          >
         </fieldset>
         <fieldset>
           <label
             >Способ оплаты:
-            <label><input type="radio" name="payment" value="0.02" checked />Карта</label>
-            <label><input type="radio" name="payment" value="0"/>Наличные</label>
             <label
-              ><input type="radio" name="payment" value="0.02"/>Счет на юридическое лицо</label></label>
-              <p class="discount">*При оплате картой или на счет скидка на покупку 2%</p>
+              ><input
+                type="radio"
+                name="payment"
+                value="0.02"
+                checked
+              />Карта</label
+            >
+            <label
+              ><input type="radio" name="payment" value="0" />Наличные</label
+            >
+            <label
+              ><input type="radio" name="payment" value="0.02" />Счет на
+              юридическое лицо</label
+            ></label
+          >
+          <p class="discount">
+            *При оплате картой или на счет скидка на покупку 2%
+          </p>
         </fieldset>
         <button id="button">Рассчитать стоимость</button>
       </form>
