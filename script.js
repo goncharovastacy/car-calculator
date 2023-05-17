@@ -91,12 +91,9 @@ function calculatePrice () {
 
     let totalPrice = +modelPrice;
     //прибавляем тип топлива
-    const fuelType = document.querySelectorAll('.fuel');
-    for (let i = 0; i < fuelType.length; i++) {
-        if (fuelType[i].checked === true) {
-            totalPrice = totalPrice + +fuelType[i].value;
-        }
-    }
+    const fuelType = document.querySelector('input[name="fuel"]:checked');
+    totalPrice = totalPrice + +fuelType.value;
+
 
     //прибавляем объем двигателя
     const capacity = document.getElementById('capacity').value;
@@ -112,21 +109,13 @@ function calculatePrice () {
 
     // делаем скидку в зависимости от того, сколько было владельцев
     if (secondCondition.checked) {
-        const exOwner = document.querySelectorAll('input[name="ex-owner"]');
-        for (let i = 0; i < exOwner.length; i++){
-            if (exOwner[i].checked === true){
-                totalPrice = totalPrice - (totalPrice * +exOwner[i].value);
-            }
-        }
+        const exOwner = document.querySelector('input[name="ex-owner"]:checked');
+        totalPrice = totalPrice - (totalPrice * +exOwner.value);
     }
 
     // скидка на оплату
-    const payment = document.querySelectorAll('input[name="payment"]');
-    for (let i = 0; i < payment.length; i++){
-        if (payment[i].checked === true) {
-            totalPrice = totalPrice - (totalPrice * +payment[i].value);
-        }
-    }
+    const payment = document.querySelector('input[name="payment"]:checked');
+    totalPrice = totalPrice - (totalPrice * +payment.value);
 
     const priceText = document.getElementById('total-price');
     priceText.innerHTML = `<p>Расчетная цена: ${totalPrice}</p>`;
