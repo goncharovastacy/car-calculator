@@ -6,7 +6,7 @@ const carModel = document.querySelector('#model');
 const button = document.getElementById('button');
 
 // показ по умолчанию
-document.querySelector('.car-model').style.display = 'none';
+document.querySelector('.car-model').hidden = true;
 document.getElementById('none').selected = true;
 
 // объекты с моделями
@@ -41,7 +41,7 @@ const jaguarModel = {
 // функция выбора бренда
 function chooseBrand () {
     if (brand.value === 'none'){
-        document.querySelector('.car-model').style.display = 'none';
+        document.querySelector('.car-model').hidden = true;
     }
     else if (brand.value === 'Renault'){
         chooseModelList(renaultModel, carModel);
@@ -61,7 +61,7 @@ brand.addEventListener('change', chooseBrand);
 
 // функция добавления списка моделей
 function chooseModelList (obj, element){
-    document.querySelector('.car-model').style.display = '';
+    document.querySelector('.car-model').hidden = false;
     element.innerHTML = '';
     for (let key in obj) {
     const option = document.createElement('option');
@@ -71,15 +71,15 @@ function chooseModelList (obj, element){
 }}
 
 //показ состояния машины по умолчанию
-document.getElementById('conditions').style.display = 'none';
+document.getElementById('conditions').hidden = true;
 const firstCondition = document.getElementById('condition1');
 firstCondition.checked = true;
 
 //выбор состояния машины
 const secondCondition = document.getElementById('condition2');
 function chooseCondition(){
-    if (secondCondition.checked) {document.getElementById('conditions').style.display = ''}
-    else {document.getElementById('conditions').style.display = 'none'};
+    if (secondCondition.checked) {document.getElementById('conditions').hidden = false;}
+    else {document.getElementById('conditions').hidden = true;};
 }
 firstCondition.addEventListener('change', chooseCondition);
 secondCondition.addEventListener('change', chooseCondition);
